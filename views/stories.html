@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stories</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Your Font Choice', cursive;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('/public/bg1.png') no-repeat center center/cover;
+  filter: blur(7.5px);
+  z-index: -1;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position:fixed;
+  width:100%;
+  height: 100px;
+  background: black;
+  padding: 0 20px;
+}
+
+.nav img {
+  height: 100px;
+}
+
+.list {
+  display: flex;
+  list-style-type: none;
+}
+
+.list li {
+  margin-left: 55px;
+}
+
+.hsll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: pink;
+  width: 70px;
+  height: 50px;
+  color: black;
+  text-decoration: none;
+  border-radius: 48%;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: 0.3s ease;
+}
+
+.hsll:hover {
+  background: rgb(180, 114, 125);
+  font-weight: bolder;
+}
+
+.hsll:active {
+  background: rgba(180, 114, 125, 0.2);
+}
+    
+.story-container {
+  max-width: 600px;
+  margin: 120px auto 80px auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  position: relative;
+}
+
+.story-form h1 {
+  font-size: 28px;
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 16px;
+  background: #f3b8d0;
+  outline: none;
+}
+
+
+input[type="submit"] {
+  background-color: #f3b8d0;
+  color: black;
+  font-weight:bolder;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 12px;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(254, 233, 237);
+  color: black;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+.story-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <img src="/public/logo.png.jpg" alt="Logo" />
+    <ul class="list">
+      <li><a href="index.html" class="hsll">Home</a></li>
+      <li><a href="stories.html" class="hsll">Stories</a></li>
+      <li><a href="learn.html" class="hsll">Learn</a></li>
+    </ul>
+  </nav>
+
+  <div class="story-container">
+    <div class="story-form">
+      <h1>Share Your Story</h1>
+      <form id="storyForm">
+        <label for="story">Your Story:</label><br />
+        <textarea id="story" name="story" rows="6" cols="50" required></textarea><br /><br />
+        <input type="submit" value="Submit Story">
+      </form>
+
+      <h2>📖 Submitted Stories</h2>
+      <div id="storyList"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('storyForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const storyText = document.getElementById('story').value;
+
+  fetch('http://localhost:3000/stories', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: storyText })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert(data.message);
+    document.getElementById('storyForm').reset();
+    loadStories();
+  })
+  .catch(err => console.error(err));
+});
+
+function loadStories() {
+  fetch('http://localhost:3000/stories')
+    .then(res => res.json())
+    .then(stories => {
+      const container = document.getElementById('storyList');
+      container.innerHTML = '';
+      stories.forEach(story => {
+        const div = document.createElement('div');
+        div.className = 'story-entry';
+        div.innerHTML = `<p>${story.content}</p>
+                         <small>${story.author} | ${new Date(story.created_at).toLocaleString()}</small>
+                         <hr>`;
+        container.appendChild(div);
+      });
+    })
+    .catch(err => console.error(err));
+}
+
+window.onload = loadStories;
+
+  </script>
+
+</body>
+
+
+</html>

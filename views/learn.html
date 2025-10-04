@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Everything About Periods</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Your Font Choice', cursive;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: url('/public/bg1.png') no-repeat center center/cover;
+  filter: blur(7.5px);
+  z-index: -1;
+}
+
+body {
+  padding-top: 100px; /* Space for fixed nav */
+  background-color: transparent;
+}
+
+/* NAVIGATION */
+.nav {
+  top:0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  background: black;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.nav img {
+  height: 100px;
+}
+
+.list {
+  display: flex;
+  list-style-type: none;
+}
+
+.list li {
+  margin-left: 55px;
+}
+
+.hsll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: pink;
+  width: 70px;
+  height: 50px;
+  color: black;
+  text-decoration: none;
+  border-radius: 48%;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: 0.3s ease;
+}
+
+.hsll:hover {
+  background: rgb(180, 114, 125);
+}
+
+.hsll:active {
+  background: rgba(180, 114, 125, 0.2);
+}
+
+/* GENERAL SECTIONS */
+section {
+  background-color: rgba(248, 199, 205, 0.8);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 850px;
+  width: 90%;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+}
+
+section h2 {
+  color: #c73864;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section p,
+section li {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #1e1e1e;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* LIST INSIDE SECTIONS */
+section ul {
+  padding-left: 20px;
+}
+
+/* SHARE STORY SPECIAL */
+.share-story {
+  background-color: rgba(248, 199, 205, 0.8);
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin: 40px auto;
+  max-width: 850px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+}
+
+.share-story h2 {
+  font-size: 24px;
+  color: #c73864;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.share-story a{
+  font-weight: bolder;
+  color:#c73864;
+}
+
+.share-story .hero-btn {
+  background-color: black;
+  color: rgb(204, 110, 126);
+  padding: 12px 24px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s ease;
+}
+
+.share-story .hero-btn:hover {
+  background-color: rgb(254, 233, 237);
+  color: black;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+
+
+/* RESOURCE LINKS */
+.resources a {
+  color: rgb(118, 4, 51);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.resources a:hover {
+  color: rgb(231, 6, 104);
+  text-decoration: underline;
+}
+
+/* FOOTER */
+.footer {
+  height: 40px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  font-size: 14px;
+  z-index: 5;
+}
+
+/* FORM STYLING */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  max-width: 600px;
+  height: 150px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+input[type="submit"] {
+  background-color: black;
+  color: rgb(204, 110, 126);
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(254, 233, 237);
+  color: black;
+  border: 2px solid black;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .nav img {
+    height: 60px;
+  }
+
+  .list {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hsll {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  textarea {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <img src="/public/logo.png.jpg" alt="Logo" />
+    <ul class="list">
+      <li><a href="index.html" class="hsll">Home</a></li>
+      <li><a href="stories.html" class="hsll">Stories</a></li>
+      <li><a href="learn.html" class="hsll">Learn</a></li>
+    </ul>
+  </nav>
+  
+  <section class="learn-intro">
+    <h2>What is Menstruation?</h2>
+    <p>Menstruation (or a "period") is when your body releases blood and tissue from the uterus through the vagina. It usually happens once a month and can last anywhere between 3 to 7 days.</p>
+    <p>It’s your body’s way of saying, “Hey, no baby this month, so let’s reset!” You might feel different during this time — tired, emotional, or even totally normal. Everyone’s experience is valid. And no, it’s not dirty or weird. It’s your body doing exactly what it’s supposed to do.</p>
+  </section>
+
+  <section class="cycle">
+    <h2>Understanding the Menstrual Cycle</h2>
+    <p>Your period is just one part of a larger cycle that your body goes through every month. It’s like your body running a routine — getting ready for pregnancy just in case, and resetting if it doesn’t happen.</p>
+    <p>The full cycle includes four phases:</p>
+    <ul>
+      <li><strong>Menstrual:</strong> When bleeding happens.</li>
+      <li><strong>Follicular:</strong> The body starts preparing an egg.</li>
+      <li><strong>Ovulation:</strong> The egg is released (usually around day 14).</li>
+      <li><strong>Luteal:</strong> Hormones go up, and if there's no pregnancy, the cycle ends with another period.</li>
+    </ul>
+    <p>Some people feel super energetic mid-cycle and more tired before their period. Tracking this helps you understand your emotions, energy levels, and body better.</p>
+  </section>
+
+  <section class="symptoms">
+    <h2>Common Period Symptoms</h2>
+    <p>Everyone experiences periods differently. For some, it’s just a bit of bleeding and that’s it. For others, it can feel like a storm of emotions and pain.</p>
+    <ul>
+      <li>Cramps (like a tight knot in your belly)</li>
+      <li>Bloating (feeling puffier than usual)</li>
+      <li>Mood swings (suddenly emotional or irritated)</li>
+      <li>Acne or breakouts</li>
+      <li>Feeling tired or sleepy all day</li>
+    </ul>
+    <p>You might also feel super hungry, crave sweets, or just want to lie down with a hot water bottle. It’s all normal. And if something feels too painful or not okay, talk to someone — don’t ignore your body.</p>
+  </section>
+
+  <section class="hygiene">
+    <h2>Period Hygiene and Care</h2>
+    <p>Staying clean and fresh during your period is important, but don’t overthink it — simple steps are enough:</p>
+    <ul>
+      <li>Change your pad, tampon, or cup every 4–8 hours.</li>
+      <li>Wash your hands before and after changing products.</li>
+      <li>Use mild, unscented soap around your private parts.</li>
+    </ul>
+    <p>If you use reusable products like cloth pads or menstrual cups, rinse and clean them properly. And remember — taking care of yourself is not just physical. Drink water, eat warm food, and wear comfy clothes!</p>
+  </section>
+
+  <section class="products">
+    <h2>Types of Period Products</h2>
+    <p>There are so many options out there — what you use depends on what makes you feel safe, dry, and confident:</p>
+    <ul>
+      <li><strong>Pads:</strong> Stick to your underwear and absorb flow. Great for beginners.</li>
+      <li><strong>Tampons:</strong> Inserted inside the vagina. Need practice, but super discreet.</li>
+      <li><strong>Menstrual Cups:</strong> Reusable, eco-friendly, and can last up to 8–12 hours.</li>
+      <li><strong>Period Panties:</strong> Look like normal underwear but with built-in layers to absorb flow.</li>
+    </ul>
+    <p>There’s no "right" product. You might have to try a few before finding your favorite — and that’s okay.</p>
+  </section>
+
+  <section class="tracking">
+    <h2>Tracking Your Cycle</h2>
+    <p>Knowing when your period starts, how long it lasts, and how you feel each day helps you understand your body better.</p>
+    <p>You can:</p>
+    <ul>
+      <li>Use period tracking apps (like Clue, Flo, etc.)</li>
+      <li>Mark dates in a journal or calendar</li>
+      <li>Write down how you feel (mood, pain, flow, cravings)</li>
+    </ul>
+    <p>Over time, you’ll see patterns: maybe you get moody before your period or super creative mid-cycle. Tracking helps you plan better and spot when something feels off.</p>
+  </section>
+
+  <section class="myths">
+    <h2>Period Myths vs. Facts</h2>
+    <ul>
+      <li><strong>Myth:</strong> You can’t touch plants or cook during your period. <br><strong>Fact:</strong> Yes, you can. Periods don’t affect your magical powers.</li>
+      <li><strong>Myth:</strong> You’re not clean during your period. <br><strong>Fact:</strong> Your body is just doing its job. There’s nothing unclean about it.</li>
+      <li><strong>Myth:</strong> Boys shouldn’t know about periods. <br><strong>Fact:</strong> Everyone should. It’s part of life and affects half the world’s population.</li>
+    </ul>
+  </section>
+
+  <section class="mental-health">
+    <h2>Taking Care of Your Mental Health</h2>
+    <p>Periods don’t just affect your body — they can mess with your feelings too. Some people feel down, angry, anxious, or just “off” a few days before and during their period.</p>
+    <p>Tips that might help:</p>
+    <ul>
+      <li>Journal your feelings — let it out.</li>
+      <li>Rest when you’re low on energy.</li>
+      <li>Talk to someone who understands.</li>
+      <li>Do something comforting — music, hot shower, warm food.</li>
+    </ul>
+    <p>Your emotions are valid. You’re not “too sensitive” or “lazy” — you’re just human.</p>
+  </section>
+
+  <section class="doctor">
+    <h2>When Should You See a Doctor?</h2>
+    <ul>
+      <li>Bleeding that soaks through a pad/tampon every 1–2 hours</li>
+      <li>Cramps so bad you can’t get out of bed</li>
+      <li>No periods for 3+ months (and you’re not pregnant)</li>
+      <li>Periods that last more than 7 days</li>
+      <li>Sudden changes in flow or pain</li>
+    </ul>
+    <p>Don’t wait till things get worse. You deserve care and answers. Listening to your body is the best kind of self-love.</p>
+  </section>
+
+  <section class="resources">
+    <h2>Helpful Resources and Tools</h2>
+    <ul>
+      <li><a href="https://menstrupedia.com" target="_blank">Menstrupedia</a> – Comics and info made for teens</li>
+      <li><a href="https://www.unicef.org/wash/menstrual-hygiene" target="_blank">UNICEF – Menstrual Hygiene</a></li>
+      <li><a href="https://helloclue.com" target="_blank">Clue App</a> – Cycle and symptom tracking</li>
+      <li><a href="https://www.nhs.uk/conditions/periods/" target="_blank">NHS – Period Info</a></li>
+    </ul>
+  </section>
+
+  <section class="real-talk">
+    <h2>Real Talk: Things No One Tells You</h2>
+    <ul>
+      <li>You might cry over a puppy video — and that’s okay.</li>
+      <li>You might hate your body one day and love it the next. That’s okay too.</li>
+      <li>Period leaks happen — it’s annoying but fixable.</li>
+      <li>Some people feel more creative, while others feel foggy.</li>
+      <li>It’s okay to rest, cancel plans, or say “I need a break today.”</li>
+    </ul>
+    <p>Periods don’t make you weak — they make you powerful, aware, and in tune with your body.</p>
+  </section>
+
+  <section class="share-story">
+  <h2>Want to Share Your Story?</h2>
+  <a href="stories.html" class="hero-btn">Share Your Story</a>
+  </section>
+
+
+  <footer class="footer">
+    <p>@ 2025 Scarlets Speak | All rights reserved</p>
+  </footer>
+
+</body>
+</html>
