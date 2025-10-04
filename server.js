@@ -1,16 +1,15 @@
-// server.js
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config(); 
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
 
-// Middleware
+
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public')); // Serve frontend from /public
+app.use(express.static('public')); 
 
-// Database connection
+
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -26,9 +25,7 @@ db.connect(err => {
   console.log('Connected to database');
 });
 
-// Routes
 
-// Get all stories
 app.get('/stories', (req, res) => {
   db.query('SELECT * FROM stories ORDER BY created_at DESC', (err, results) => {
     if (err) return res.status(500).json({ error: err });
@@ -36,7 +33,7 @@ app.get('/stories', (req, res) => {
   });
 });
 
-// Submit a new story
+
 app.post('/stories', (req, res) => {
   const { content, author } = req.body;
   if (!content) return res.status(400).json({ error: 'Content is required' });
@@ -51,12 +48,12 @@ app.post('/stories', (req, res) => {
   );
 });
 
-// Catch-all route for undefined endpoints
+
 app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
-// Start server
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
